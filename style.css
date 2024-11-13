@@ -1,0 +1,191 @@
+/* Basis CSS-reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #0a7082;
+    color: #fff;
+}
+
+.header a {
+    text-decoration: none; /* Verwijdert onderstreping */
+    color: inherit; /* Neemt de kleur van het h1-element over */
+}
+
+.header {
+    background-color: #ffc107;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header h1 {
+    font-size: 48px;
+    font-weight: bold; /* Zwarte, dikgedrukte letters */
+    color: #000;       /* Zwart */
+    margin-left: 10px;
+}
+
+.start-trial-btn {
+    background-color: #FFD700; /* Goudkleurige achtergrond */
+    color: black; /* Zwarte tekst */
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 5px; /* Afronden van hoeken, optioneel */
+    text-transform: uppercase; /* Zorgt ervoor dat tekst in hoofdletters is */
+}
+
+.start-trial-btn:hover {
+    background-color: #E6BE00; /* Donkerder goudkleur bij hover */
+}
+
+.start-btn {
+    background-color: #e63014;
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.login-signup a {
+    color: #000;
+    text-decoration: none;
+    margin-left: 10px;
+}
+
+.navbar {
+    background-color: #0a7082; /* Achtergrondkleur van de navigatiebalk */
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* Ruimte tussen de knoppen */
+    padding: 10px 0;
+    border-top: 4px solid #b10f0f; /* Dikke rode rand aan de bovenkant */
+    border-bottom: 4px solid #b10f0f; /* Dikke rode rand aan de onderkant */
+}
+
+.navbar a {
+    color: #ffffff; /* Witte tekstkleur */
+    text-decoration: none;
+    font-size: 18px;
+    padding: 10px 20px;
+    background-color: #b10f0f; /* Donkerrode achtergrond voor de knoppen */
+    border: 2px solid #0a7082; /* Donkergroene rand om de knoppen */
+    font-weight: bold;
+    text-align: center;
+    display: inline-block;
+}
+
+.navbar a:hover {
+    background-color: #d81c1c; /* Iets lichtere rode kleur bij hover */
+    color: #fff; /* Witte tekstkleur bij hover */
+}
+
+.content {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start; /* Zorgt ervoor dat de inhoud aan de linkerkant staat */
+    align-items: flex-start; /* Zorgt ervoor dat de items bovenaan uitgelijnd zijn */
+    padding: 20px;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.intro {
+    background-color: #0a7082;
+    padding: 20px;
+    width: 60%; /* Zorg dat intro 60% van de breedte inneemt */
+    border: 2px solid #b10f0f;
+    border-radius: 5px;
+    color: #fff;
+}
+
+/* Team sectie - apart gestyled voor consistente opmaak */
+.team {
+    background-color: #0a7082;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 800px;
+    color: #fff;
+    border: 2px solid #b10f0f;
+    border-radius: 5px;
+}
+
+.team h3 {
+    margin-top: 20px;
+}
+
+.news {
+    background-color: #ffc107;
+    color: black;
+    padding: 20px;
+    text-align: center;
+    width: 35%; /* Zorg dat news 35% van de breedte inneemt */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.news h3 {
+    margin-bottom: 10px;
+}
+
+.news img {
+    width: 80%;
+    max-width: 150px; /* Afbeelding kleiner maken als die te groot is */
+}
+
+/* Nieuwe klasse om de GIF groter te maken */
+.news-gif {
+    width: 500px; /* Pas de breedte aan naar wens */
+    height: 150px; /* Houdt de aspectratio */
+}
+
+.contact-info {
+    background-color: #a80c0c;
+    padding: 1px;
+    width: 100%;
+    text-align: center;
+    font-size: 16px;
+    /* Plaats contact-info altijd onderaan */
+    position: relative;
+    bottom: 0;
+}
+
+/* Toegevoegde klasse voor zwarte, dikgedrukte tekst "At your service" */
+.subtitle {
+    color: #000; /* Zwarte kleur */
+    font-weight: bold; /* Dikke tekst */
+}
+
+/* Container voor de teamfoto's */
+.team-photos {
+    display: flex;
+    flex-direction: column; /* Zorgt ervoor dat de foto's onder elkaar staan */
+    align-items: flex-end;  /* Zorgt ervoor dat de foto's aan de rechterkant staan */
+    padding: 20px;
+}
+
+/* Styling voor elke teamfoto */
+.team-photo {
+    width: 300px; /* Pas de breedte aan naar wens */
+    margin-bottom: 15px; /* Ruimte tussen de foto's */
+    border-radius: 8px; /* Optioneel: afgeronde hoeken */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Optioneel: schaduw voor een mooie uitstraling */
+}
