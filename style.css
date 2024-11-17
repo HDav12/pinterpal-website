@@ -267,7 +267,7 @@ body {
     border: 2px solid #ffc107;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
-    margin: 0 auto; /* Centraal in het vak */
+    margin-left: 20px  auto; /* Centraal in het vak */
 }
 
 /* Responsiviteit */
