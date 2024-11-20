@@ -183,14 +183,13 @@ body {
 
 /* Banner Image */
 .banner-image {
-    max-width: 80%; /* Iets verkleinen zodat het mooi past in de container */
-    height: 150px; /* Verhoog de hoogte voor betere zichtbaarheid */
+    max-width: 90%; /* Vergroot de breedte van de banner naar 90% van de container */
+    height: 300px; /* Verhoog de hoogte naar 350px voor een grotere weergave */
     border-radius: 5px;
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.15);
-    margin: 2vw auto; /* Gebruik auto marge om de banner horizontaal te centreren */
+    margin: 2vw auto; /* Zorg ervoor dat de banner horizontaal gecentreerd blijft */
     display: block; /* Zorg ervoor dat de afbeelding als een block element wordt weergegeven */
     border: 2px solid #ffc107;
-    ;
 }
 
 @media (max-width: 768px) {
