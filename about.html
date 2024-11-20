@@ -11,19 +11,21 @@
         <a href="index.html">
             <h1>PINTERPAL.</h1>
         </a>
-        <p class="subtitle">About Us</p>
+        <p class="subtitle">Keep on Developing.</p>
         <div class="login-signup">
-            <a href="#">Log in</a> | <a href="#">Sign up</a>
+            <a href="login.html">Log in</a> | <a href="signup.html">Sign up</a>
             <img src="pinterpal-logo.jpg" alt="PinterPal Logo" class="header-logo">
         </div>
     </div>
 
     <nav class="navbar">
         <a href="pinterpalbot.html">PINTERPAL BOT</a>
-        <a href="#">ASSISTANCE</a>
-        <a href="#">PRICING</a>
+        <a href="assistance.html">ASSISTANCE</a>
+        <a href="pricing.html">PRICING</a>
         <a href="about.html">ABOUT US</a>
     </nav>
+    
+    
 
     <div class="content">
        
@@ -32,21 +34,25 @@
 
         <div class="intro">
             <h2>About Us</h2>
+
+
             <br>
             <div class="story">
                 <h3>Our Journey</h3>
-                <p>Founded in February 2024 in The Hague, Netherlands, our journey to build this bot took ten months. From the start, we knew that working with AI would be challenging, given its relatively new and complex nature. However, we were inspired by the incredible potential AI offers to improve people's lives. This shared vision brought Hidde and Neo together. Although we attended the same high school, we had never spoken until we joined forces for this project.</p>
+                <p>Founded in February 2024 in The Hague, Netherlands, our journey to build this bot took ten months. From the start, we knew that working with AI would be challenging, given its relatively new and complex nature. However, we were inspired by the incredible potential AI offers to improve people's lives. This shared vision brought Hidde and Neo together. Although we attended the same high school, we had never spoken until we joined forces for this project. This coooperations goes under the name DTI this stands for: Davids, Troenopawiro Intelligence.</p>
                 
                 <p>The ten months flew by, filled with both highs and lows, and taught us a tremendous amount about AI. Several times a week, we worked on the bot in the evenings after school or work. Now, we have created a bot designed to support people in their online shopping journeys. The bot provides you with quick insights into webshops and it's assortment and, most importantly, saves customers time by guiding them efficiently to the products that best match their needs and preferences.</p>
                 
                 <br>
                 <h3>Our Goals</h3>
-                <p>At PinterPal, we are dedicated to:</p>
+                <p>At PinterPal, we are dedicated to these 5 goals:</p>
                 <ol>
                     <li>Guiding shoppers to find products that match their personal wants, needs, and preferences.</li>
                     <li>Creating a seamless and personalized shopping experience using our intelligent, AI-powered widget.</li>
                     <li>Assisting online shoppers across all categories where we know the latest AI capabilities can make a difference.</li>
                     <li>Constantly improving and adapting our platform to serve both customers and retailers, making online shopping more efficient, enjoyable, and time-saving.</li>
+                    <li>Prepare online shopping for the new era.</li>
+
                 </ol>
             </div>
         </div>
@@ -54,10 +60,42 @@
     
 
 
-    <div class="team-photos">
-        <img src="team-photo1.jpg" alt="Step 1" class="process-image">
-        <img src="team-photo2.jpg" alt="Step 2" class="process-image">
-    </div>
+        <div class="image-row">
+            <div class="image-container">
+                <img src="team-photo1.jpg" alt="Process 1" class="process1-image">
+            </div>
+            <div class="image-container">
+                <img src="team-photo2.jpg" alt="Process 2" class="process2-image">
+            </div>
+            <div class="image-container">
+                <img src="nl-vlag.gif" alt="Dutch Flag" class="flag-image">
+            </div>
+        </div>
+        
+        
+   
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Get the current page from the URL (only the last part)
+            const currentPage = window.location.pathname.split('/').pop();
     
+            // Select all links in the navigation bar
+            const navbarLinks = document.querySelectorAll('.navbar a');
+    
+            // Remove 'active' class from all links initially
+            navbarLinks.forEach(link => link.classList.remove('active'));
+    
+            // Add 'active' class to the correct link based on the href match
+            navbarLinks.forEach(link => {
+                const linkPage = link.getAttribute('href');
+                if (linkPage === currentPage || (linkPage === "index.html" && currentPage === "")) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+    
+    
+
 </body>
 </html>
