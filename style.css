@@ -1,3 +1,17 @@
+:root {
+    --transparent: oklch(0 0 0 / 0%);
+    --purple-100: oklch(0.86 0.08 280);
+    --purple-200: oklch(0.82 0.06 280);
+    --purple-300: oklch(0.71 0.12 280);
+    --purple-400: oklch(0.61 0.18 280);
+    --purple-500: oklch(0.5 0.21 280);
+    --purple-600: oklch(0.42 0.18 280);
+    --purple-800: oklch(0.25 0.15 280);
+    --purple-900: oklch(0.13 0.06 280);
+    --purple-900: oklch(0.13 0.06 280);
+  }
+
+
 /* Basis CSS-reset */
 * {
     margin: 0;
@@ -427,6 +441,60 @@ body {
 .assistance .start-trial-btn:hover {
     background-color: #7ae614;
 }
+
+@keyframes glow {
+    0% {
+        box-shadow: 0 0 5px #7ae614;
+    }
+    50% {
+        box-shadow: 0 0 20px #7ae614, 0 0 30px #7ae614;
+    }
+    100% {
+        box-shadow: 0 0 5px #7ae614;
+    }
+}
+
+/* Glow-effect voor de knop */
+.start-trial-btn {
+    padding: 0.5vw 1vw;
+    background-color: #8c52ff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    animation: glow 1.5s infinite;
+}
+
+.start-trial-btn:hover {
+    background-color: #7ae614;
+}
+
+/* Buttons zonder glow */
+.no-glow-btn {
+    padding: 0.5vw 1vw;
+    background-color: #8c52ff; /* Basis kleur */
+    color: #fff; /* Witte tekst */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Simpele overgang */
+}
+
+.no-glow-btn:hover {
+    background-color: #7ae614; /* Kleurverandering bij hover */
+    transform: scale(1.05); /* Iets groter bij hover */
+}
+
+.no-glow-btn:active {
+    background-color: #5cbf12; /* Donkerdere kleur bij klikken */
+    transform: scale(0.95); /* Iets kleiner bij klikken */
+}
+
+
 
 /* Responsive Design */
 @media (max-width: 768px) {
