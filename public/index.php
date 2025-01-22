@@ -37,7 +37,7 @@ session_start();
     
     <div class="content">
         <div class="intro">
-            <h2>"PinterPal: Your go-to assistant for understanding online shoppers' wants and needs, offering expert assistance across almost all categories.</h2>
+            <h2>"PinterPal: Your go-to assistant for understanding online shoppers' wants and needs, offering expert assistance across almost all categories</h2>
             <p>___________________________________________________________________________________________________________________________________________________________</p>
             <p>
             <strong style="font-size: 24px;">The Problem:</strong><br><br>
