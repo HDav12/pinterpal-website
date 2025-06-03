@@ -1,7 +1,7 @@
 <?php
 // Start de sessie om gebruikersgegevens op te halen
 session_start();
-
+$role = $_SESSION['user_role'] ?? 'company';
 // Controleer of de gebruiker is ingelogd
 if (!isset($_SESSION['user_logged_in']) || $_SESSION['user_logged_in'] !== true) {
     // Niet ingelogd → doorverwijzen naar login-pagina
@@ -136,6 +136,7 @@ if ($result->num_rows === 1) {
 </head>
 <body>
     <div class="header">
+    <p><strong>Rol:</strong> <?php echo htmlspecialchars($role); ?></p>
         <a href="index.php">
             <h1>PINTERPAL.</h1>
         </a>

@@ -99,11 +99,11 @@ session_start();
     </div>
 
     <footer class="contact-info">
-        <p>
-            <strong>KVK:</strong> Your KVK Info<br>
-            <strong>Address:</strong> Your Address<br>
+    <p>
+            <strong>KVK:</strong> 96433647<br>
+            <strong>Address:</strong> Den Haag<br>
             <strong>Telephone:</strong> Your Phone Number<br>
-            <strong>Email:</strong> Your Email Address
+            <strong>Email:</strong> info@pinterpal.com
         </p>
     </footer>
 

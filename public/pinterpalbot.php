@@ -77,9 +77,9 @@ session_start();
 
     <!-- Process sectie -->
     <section class="process">
-        <h2>The PinterPal Process:</h2>
+       
         <div class="process-image">
-            <img src="img/pinterpal-onit.jpg" alt="The PinterPal Process">
+            <img src="img/pinterpal-roadmap.jpg" alt="The PinterPal Process">
         </div>
     </section>
 

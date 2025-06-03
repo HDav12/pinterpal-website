@@ -2,6 +2,7 @@
 // Start de sessie om inlogstatus op te slaan
 session_start();
 include __DIR__ . '/database.php';
+$role = $_SESSION['user_role'] ?? 'onbekend';
 
 // Initialiseer foutmelding
 $error = '';
@@ -33,6 +34,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $_SESSION['user_logged_in'] = true;
                 $_SESSION['user_id'] = $row['id'];
                 $_SESSION['user_email'] = $row['user_email'];
+                $_SESSION['user_role'] = $user['role'];
+                
 
                 // Doorsturen naar index.php
                 header("Location: index.php");

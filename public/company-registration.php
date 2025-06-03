@@ -2,13 +2,11 @@
 session_start();
 include __DIR__ . '/database.php';
 
-// Initialiseer fout- en succesmeldingen
 $error = '';
 $success = '';
 
-// Controleer of het formulier is ingediend
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Haal gegevens uit het formulier op
+    // Gegevens ophalen uit formulier
     $companyName   = $_POST['company_name'] ?? '';
     $companyEmail  = $_POST['company_email'] ?? '';
     $contactPerson = $_POST['contact_person'] ?? '';
@@ -18,42 +16,77 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $zipCode       = $_POST['zip_code'] ?? '';
     $country       = $_POST['country'] ?? '';
     $paymentPlan   = $_POST['payment_plan'] ?? 'basic';
+    $password      = $_POST['password'] ?? '';
+    $confirm       = $_POST['confirm_password'] ?? '';
+    $role          = 'company';
 
-    // Validaties
-    if (empty($companyName) || empty($companyEmail) || empty($contactPerson) || empty($phoneNumber) || empty($address) || empty($city) || empty($zipCode) || empty($country)) {
-        $error = "Vul alle velden in.";
+    // Validatie
+    if (
+        empty($companyName) || empty($companyEmail) || empty($contactPerson) ||
+        empty($phoneNumber) || empty($address) || empty($city) ||
+        empty($zipCode) || empty($country) || empty($password) || empty($confirm)
+    ) {
+        $error = "Vul alle verplichte velden in.";
     } elseif (!filter_var($companyEmail, FILTER_VALIDATE_EMAIL)) {
         $error = "Voer een geldig e-mailadres in.";
+    } elseif ($password !== $confirm) {
+        $error = "Wachtwoorden komen niet overeen.";
     } else {
-        // Controleer of de bedrijfsnaam of e-mailadres al in gebruik is
-        $sqlCheck = "SELECT * FROM companies WHERE company_email = ?";
+        // Check of e-mailadres al bestaat
+        $sqlCheck = "SELECT * FROM users WHERE user_email = ?";
         $stmt = $conn->prepare($sqlCheck);
         $stmt->bind_param("s", $companyEmail);
         $stmt->execute();
         $resultCheck = $stmt->get_result();
 
         if ($resultCheck->num_rows > 0) {
-            $error = "Dit e-mailadres is al in gebruik. Probeer opnieuw.";
+            $error = "Dit e-mailadres is al geregistreerd.";
         } else {
-            // Voeg bedrijf toe aan de database
-            $sqlInsert = "
-                INSERT INTO companies (company_name, company_email, contact_person, phone_number, company_address, company_city, zip_code, country, payment_plan)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-            ";
-            $stmt = $conn->prepare($sqlInsert);
-            $stmt->bind_param("sssssssss", $companyName, $companyEmail, $contactPerson, $phoneNumber, $address, $city, $zipCode, $country, $paymentPlan);
+            // Versleutel wachtwoord
+            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-            if ($stmt->execute()) {
-                $success = "Registratie voltooid! U wordt doorgestuurd naar de betalingspagina.";
-                header("Location: payment.php?company_id=" . $conn->insert_id . "&plan=" . $paymentPlan);
-                exit;
+            // Voeg gebruiker toe aan 'users'
+            $sqlUserInsert = "
+                INSERT INTO users (user_email, password, username, address, city, role)
+                VALUES (?, ?, ?, ?, ?, ?)
+            ";
+            $stmtUser = $conn->prepare($sqlUserInsert);
+            $stmtUser->bind_param("ssssss", $companyEmail, $hashedPassword, $companyName, $address, $city, $role);
+
+            if ($stmtUser->execute()) {
+                $userId = $conn->insert_id;
+
+                // Voeg bedrijfsgegevens toe aan 'companies'
+                $sqlCompanyInsert = "
+                    INSERT INTO companies (user_id, company_name, company_email, contact_person, phone_number, company_address, company_city, zip_code, country, payment_plan)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                ";
+                $stmtCompany = $conn->prepare($sqlCompanyInsert);
+                $stmtCompany->bind_param("isssssssss", $userId, $companyName, $companyEmail, $contactPerson, $phoneNumber, $address, $city, $zipCode, $country, $paymentPlan);
+
+                if ($stmtCompany->execute()) {
+                    // Log company user direct in
+                    $_SESSION['user_logged_in'] = true;
+                    $_SESSION['user_email'] = $companyEmail;
+                    $_SESSION['user_id'] = $userId;
+                    $_SESSION['user_role'] = $role;
+
+                    header("Location: payment.php?company_id=" . $conn->insert_id . "&plan=" . $paymentPlan);
+                    exit;
+                } else {
+                    $error = "Fout bij opslaan van bedrijfsgegevens: " . $stmtCompany->error;
+                }
             } else {
-                $error = "Fout bij registratie: " . $stmt->error;
+                $error = "Fout bij aanmaken gebruikersaccount: " . $stmtUser->error;
             }
         }
     }
+    
 }
 ?>
+
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -96,6 +129,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input type="text" name="company_address" placeholder="Company Address" required>
             <input type="text" name="company_city" placeholder="City" required>
             <input type="text" name="zip_code" placeholder="ZIP Code" required>
+            <h3>Account Login</h3>
+            <input type="password" name="password" placeholder="Choose a password" required>
+            <input type="password" name="confirm_password" placeholder="Confirm password" required>
+
             <select name="country" required>
     <option value="" disabled selected>Select your country</option>
     <option value="Afghanistan">Afghanistan</option>

@@ -62,7 +62,18 @@ session_start();
     <div class="news-page-container">
         <h2>Latest News</h2>
 
-  <!-- Values Towards Our Retailers -->
+  
+
+
+
+        <div class="news-item">
+            <h3>Feature Updates in February</h3>
+            <p>New features added to our platform in February. Learn how these updates improve your interactions with our widget.</p>
+            <img src="img/pinterpal-roadmap.jpg" alt="Value Towards Customers" style="width: 100%; border-radius: 10px;">        </div>
+
+        <!-- Add more news articles here -->
+
+        <!-- Values Towards Our Retailers -->
 <div class="news-item" style="background-color: #f9f9f9; padding: 1.5rem; border-radius: 10px; margin-bottom: 2rem;">
     <a href="article2.php" style="text-decoration: none; color: inherit;">
         <h3 style="text-align: center;">Values Towards Our Retailers</h3>
@@ -80,15 +91,6 @@ session_start();
     </a>
 </div>
 
-
-
-        <div class="news-item">
-            <h3>Feature Updates in February</h3>
-            <p>New features added to our platform in February. Learn how these updates improve your interactions with our widget.</p>
-            <a href="article3.php">Read More...</a>
-        </div>
-
-        <!-- Add more news articles here -->
     </div>
 </body>
 </html>

@@ -17,14 +17,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Haal gegevens op uit formulier
-    $email    = $_POST['user_email']     ?? '';
-    $password = $_POST['password']       ?? '';
+    $email    = $_POST['user_email']       ?? '';
+    $password = $_POST['password']         ?? '';
     $confirm  = $_POST['confirm_password'] ?? '';
-    $username = $_POST['username']       ?? '';
-    $address  = $_POST['address']        ?? '';
-    $city     = $_POST['city']           ?? '';
-    $gender   = $_POST['gender']         ?? '';
-    $age      = $_POST['age']            ?? '';
+    $username = $_POST['username']         ?? '';
+    $address  = $_POST['address']          ?? '';
+    $city     = $_POST['city']             ?? '';
+    $gender   = $_POST['gender']           ?? '';
+    $age      = $_POST['age']              ?? '';
+
+    // Standaard rol (alleen gebruiker komt hier dus 'gebruiker')
+    $role = 'gebruiker';
 
     // Wachtwoordvalidatie
     if ($password !== $confirm) {
@@ -43,18 +46,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Wachtwoord beveiligen
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-            // Gebruiker toevoegen aan database
+            // Gebruiker toevoegen aan database met rol
             $sqlInsert = "
-                INSERT INTO users (user_email, password, username, address, city, gender, age)
-                VALUES (?, ?, ?, ?, ?, ?, ?)
+                INSERT INTO users (user_email, password, username, address, city, gender, age, role)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?)
             ";
             $stmt = $conn->prepare($sqlInsert);
-            $stmt->bind_param("ssssssi", $email, $hashedPassword, $username, $address, $city, $gender, $age);
+            $stmt->bind_param("ssssssis", $email, $hashedPassword, $username, $address, $city, $gender, $age, $role);
 
             if ($stmt->execute()) {
                 $_SESSION['user_logged_in'] = true;
                 $_SESSION['user_email'] = $email;
                 $_SESSION['user_id'] = $conn->insert_id;
+                $_SESSION['user_role'] = $role; // Sla de rol ook op in de sessie
+
                 header("Location: pinterpalbot.php");
                 exit;
             } else {
@@ -64,6 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -149,7 +155,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="form-step active">
             <label for="account-type">Choose Account Type:</label>
             <div>
-                <input type="radio" id="user-option" name="account-type" value="user" required>
+                <input type="radio" id="user-option" name="account-type" value="gebruiker" required>
                 <label for="user-option">I am an individual</label>
             </div>
             <div>
@@ -427,6 +433,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             element.textContent = "👁️";
         }
     }
+
+    
 </script>
 
 </body>
