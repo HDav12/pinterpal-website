@@ -45,7 +45,7 @@ body {
 
 /* Header */
 .header {
-    background-color: #ffc107;
+    background-color: #6c757d;
     padding: 1vw;
     display: flex;
     justify-content: space-between;
@@ -170,18 +170,22 @@ body {
 
 /* Pricing Info */
 .pricing-info {
-    flex: 1;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1vw;
-    background-color: #ffc107;
-    border: 2px solid #255000;
-    border-radius: 5px;
-    padding: 2vw;
-    margin: 2vw 0;
+    width: 300px; /* Breedte van het blok */
+    height: 300px; /* Hoogte gelijk aan breedte voor een vierkant */
+    display: flex; /* Flexbox voor lay-out */
+    flex-direction: column; /* Elementen stapelen verticaal */
+    align-items: center; /* Horizontaal centreren */
+    justify-content: center; /* Verticaal centreren */
+    text-align: center; /* Tekst centreren */
+    gap: 1rem; /* Ruimte tussen elementen */
+    background-color: #ffc107; /* Gele achtergrondkleur */
+    border: 2px solid #255000; /* Donkergroene rand */
+    border-radius: 8px; /* Ronde hoeken */
+    padding: 1rem; /* Binnenruimte rondom inhoud */
+    margin: 2rem auto; /* Buitenruimte boven en onder, automatisch horizontaal centreren */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optionele schaduw voor diepte */
 }
+
 
 /* Start Trial Container (voor knop en afbeelding) */
 .start-trial-container {
