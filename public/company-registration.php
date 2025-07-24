@@ -74,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     header("Location: payment.php?company_id=" . $conn->insert_id . "&plan=" . $paymentPlan);
                     exit;
                 } else {
-                    $error = "Fout bij opslaan van bedrijfsgegevens: " . $stmtCompany->error;
+                    $error = "Fout bij opslaan van bedrijfsgegevens: " . $Smpany->error;
                 }
             } else {
                 $error = "Fout bij aanmaken gebruikersaccount: " . $stmtUser->error;
